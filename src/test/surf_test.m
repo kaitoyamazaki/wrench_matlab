@@ -13,7 +13,7 @@ moment_f1 = [];
 moment_f2 = [];
 moment_f3 = [];
 
-for i = 0:99
+for i = 0:5:999
     edit_f1 = i * f1;
     edit_f2 = i * f2;
     edit_f3 = i * f3;
