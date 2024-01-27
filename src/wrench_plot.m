@@ -22,9 +22,9 @@ for i = 0:100
     now_moment2 = cross(l2, edit_f2);
     now_moment3 = cross(l3, edit_f3);
 
-    wrench_f1 = [edit_f1(1) edit_f1(2) now_moment1(3)]
-    wrench_f2 = [edit_f2(1) edit_f2(2) now_moment2(3)]
-    wrench_f3 = [edit_f3(1) edit_f3(2) now_moment3(3)]
+    wrench_f1 = [edit_f1(1) edit_f1(2) now_moment1(3)];
+    wrench_f2 = [edit_f2(1) edit_f2(2) now_moment2(3)];
+    wrench_f3 = [edit_f3(1) edit_f3(2) now_moment3(3)];
 
     moment_f1 = [moment_f1; wrench_f1];
     moment_f2 = [moment_f2; wrench_f2];
