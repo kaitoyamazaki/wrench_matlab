@@ -1,4 +1,4 @@
-
+ 
 % 力の成分
 f1 = [0 1 0];
 f2 = [-1 0 0];
@@ -14,7 +14,7 @@ moment_f1 = [];
 moment_f2 = [];
 moment_f3 = [];
 
-for i = 0:10:999
+for i = 0:1:99
     edit_f1 = i * f1;
     edit_f2 = i * f2;
     edit_f3 = i * f3;
@@ -129,9 +129,16 @@ s3.FaceColor = 'b';
 s3.EdgeColor = 'b';
 
 
-xlim([-1000 1000]);
-ylim([-1000 1000]);
+xlim([-100 100]);
+ylim([-100 100]);
 zlim([-10 10]);
 
+xline(0, 'r',  'LineWidth', 2.0);
+yline(0, 'g',  'LineWidth', 2.0);
+
+zmin = -200;
+zmax = 200;
+
+line([0 0], [0, 0], [zmin zmax], 'Color', 'b', 'LineWidth', 2.0);
 
 hold off;
