@@ -77,14 +77,6 @@ point1_z = reshape(point1(:, 3), [], 5);
 
 s1 = surf(point1_x, point1_y, point1_z, 'FaceColor', 'b', 'EdgeColor', 'none','FaceAlpha', 0.25);
 
-%plot3(point1(:,1), point1(:, 2), point1(:, 3));
-%plot3(point1(:,1), point1(:, 2), point1(:, 3), '.');
-
-% 凸包を計算して面のインデックスを取得
-%K1 = convhull(point1(:,1), point1(:,2), point1(:,3));
-
-% patch関数を使用して凸包を描画
-%p = patch('Vertices', point1, 'Faces', K1, 'FaceColor', 'red', 'EdgeColor', 'black');
 
 % 軸を見やすく調整
 %axis vis3d; % アスペクト比を固定
@@ -122,11 +114,6 @@ point2_z = reshape(point2(:, 3), [], 5);
 
 s2 = surf(point2_x, point2_y, point2_z, 'FaceColor', 'b', 'EdgeColor', 'none','FaceAlpha', 0.25);
 
-%plot3(point2(:,1), point2(:, 2), point2(:, 3), '.');
-%K2 = convhull(point2(:,2), point2(:,3));
-
-%% patch関数を使用して凸包を描画
-%p = patch('Vertices', point2, 'Faces', K2, 'FaceColor', 'red', 'EdgeColor', 'black');
 
 point3 = [];
 
@@ -143,9 +130,6 @@ for i = 1:length(m2)
     end
 end
 
-
-%plot3(point3(:,1), point3(:, 2), point3(:, 3));
-%plot3(point3(:,1), point3(:, 2), point3(:, 3), '.');
 
 point3_x = reshape(point3(:, 1), [], 5);
 point3_y = reshape(point3(:, 2), [], 5);
