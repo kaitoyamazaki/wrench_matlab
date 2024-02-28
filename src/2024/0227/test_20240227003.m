@@ -39,6 +39,22 @@ m3 = moment_f3;
 
 
 point1 = [];
+vertex = [];
+vertex2 = [];
+
+vertex = [vertex; moment_f1(1, :)];
+vertex = [vertex; moment_f1(end, :)];
+
+vertex = [vertex; moment_f2(1, :)];
+vertex = [vertex; moment_f2(end, :)];
+
+vertex = [vertex; moment_f3(1, :)];
+vertex = [vertex; moment_f3(end, :)];
+
+vertex2 = [vertex2; moment_f1(end, :)];
+vertex2 = [vertex2; moment_f2(end, :)];
+vertex2 = [vertex2; moment_f3(end, :)];
+vertex2 = [vertex2; moment_f1(end, :)];
 
 for i = 1:length(m1)
     % m1とm3の点間の距離を計算
@@ -55,7 +71,13 @@ end
 
 hold on;
 
-plot3(point1(:,1), point1(:, 2), point1(:, 3));
+point1_x = reshape(point1(:, 1), [], 5);
+point1_y = reshape(point1(:, 2), [], 5);
+point1_z = reshape(point1(:, 3), [], 5);
+
+s1 = surf(point1_x, point1_y, point1_z, 'FaceColor', 'b', 'EdgeColor', 'none','FaceAlpha', 0.25);
+
+%plot3(point1(:,1), point1(:, 2), point1(:, 3));
 %plot3(point1(:,1), point1(:, 2), point1(:, 3), '.');
 
 % 凸包を計算して面のインデックスを取得
@@ -70,6 +92,7 @@ plot3(point1(:,1), point1(:, 2), point1(:, 3));
 %xlabel('X');
 %ylabel('Y');
 %zlabel('Z');
+
 grid on; % グリッド線を表示
 rotate3d on; % 3D回転を有効化
 
@@ -90,7 +113,15 @@ for i = 1:length(m1)
     end
 end
 
-plot3(point2(:,1), point2(:, 2), point2(:, 3));
+%plot3(point2(:,1), point2(:, 2), point2(:, 3));
+
+
+point2_x = reshape(point2(:, 1), [], 5);
+point2_y = reshape(point2(:, 2), [], 5);
+point2_z = reshape(point2(:, 3), [], 5);
+
+s2 = surf(point2_x, point2_y, point2_z, 'FaceColor', 'b', 'EdgeColor', 'none','FaceAlpha', 0.25);
+
 %plot3(point2(:,1), point2(:, 2), point2(:, 3), '.');
 %K2 = convhull(point2(:,2), point2(:,3));
 
@@ -112,5 +143,31 @@ for i = 1:length(m2)
     end
 end
 
-plot3(point3(:,1), point3(:, 2), point3(:, 3));
+
+%plot3(point3(:,1), point3(:, 2), point3(:, 3));
 %plot3(point3(:,1), point3(:, 2), point3(:, 3), '.');
+
+point3_x = reshape(point3(:, 1), [], 5);
+point3_y = reshape(point3(:, 2), [], 5);
+point3_z = reshape(point3(:, 3), [], 5);
+
+s3 = surf(point3_x, point3_y, point3_z, 'FaceColor', 'b', 'EdgeColor', 'none', 'FaceAlpha', 0.25);
+
+xlim([-1, 1]);
+ylim([-1, 1]);
+zlim([-0.03, 0.03]);
+
+plot3(vertex(:, 1), vertex(:, 2), vertex(:, 3), 'k', 'LineWidth', 3);
+plot3(vertex2(:, 1), vertex2(:, 2), vertex2(:, 3), 'k', 'LineWidth', 3);
+
+
+% X軸
+line([min(get(gca, 'XLim')) max(get(gca, 'XLim'))], [0 0], [0 0], 'Color', 'red', 'LineWidth', 2);
+
+% Y軸
+line([0 0], [min(get(gca, 'YLim')) max(get(gca, 'YLim'))], [0 0], 'Color', 'green', 'LineWidth', 2);
+
+% Z軸
+line([0 0], [0 0], [min(get(gca, 'ZLim')) max(get(gca, 'ZLim'))], 'Color', 'blue', 'LineWidth', 2);
+
+view(45, 45);
