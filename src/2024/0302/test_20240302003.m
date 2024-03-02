@@ -45,28 +45,27 @@ plane1_coefficient = cross(moment_point1, moment_point2);
 plane2_coefficient = cross(moment_point2, moment_point3);
 plane3_coefficient = cross(moment_point3, moment_point1);
 
-number_point = 1000;
 
-points = zeros(number_point, 3);
+expected_number_of_rows = 100000;
+
+points = zeros(expected_number_of_rows, 3);
 count = 1;
 
-for i = 1:number_point
+for lamda = 0:0.01:1
+    for mu = 0:0.01:1
 
-    lamda = rand;
-    mu = rand;
+        point = lamda * moment_point1 + mu * moment_point2;
 
-    point = lamda * moment_point1 + mu * moment_point2;
-
-    if abs(plane1_coefficient(1) * point(1) + plane1_coefficient(2) * point(2) + plane1_coefficient(3) * point(3)) < 1e-10
-        points(count, :) = point;
-        count = count + 1;
+        if abs(plane1_coefficient(1) * point(1) + plane1_coefficient(2) * point(2) + plane1_coefficient(3) * point(3)) < 1e-10
+            points(count, :) = point;
+            count = count + 1;
+        end
     end
 end
 
-test = points;
 points = points(1:count-1, :);
 
-shp = alphaShape(points(:,1), points(:,2), points(:,3))
+shp = alphaShape(points(:,1), points(:,2), points(:,3));
 % プロット初期化
 figure;
 
