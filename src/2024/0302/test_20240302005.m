@@ -3,7 +3,7 @@
 clear;
 
 addpath('.', '-end');
-
+%alpha_radius = 1.0e+100000;
 
 % 力の成分
 f1 = [0 1 0];
@@ -54,9 +54,9 @@ count = 1;
 for lamda = 0:0.01:1
     for mu = 0:0.01:1
 
-        point = lamda * moment_point1 + mu * moment_point2;
+        point = lamda * moment_point3 + mu * moment_point1;
 
-        if abs(plane1_coefficient(1) * point(1) + plane1_coefficient(2) * point(2) + plane1_coefficient(3) * point(3)) < 1e-10
+        if abs(plane3_coefficient(1) * point(1) + plane3_coefficient(2) * point(2) + plane3_coefficient(3) * point(3)) < 1e-10
             points(count, :) = point;
             count = count + 1;
         end
@@ -69,16 +69,18 @@ points_x = reshape(points(1:count-2,1), [], 5);
 points_y = reshape(points(1:count-2,2), [], 5);
 points_z = reshape(points(1:count-2,3), [], 5);
 
-figure;
-
-hold on;
-mesh = mesh(points_x, points_y, points_z, 'LineStyle', "none", 'FaceColor', 'b', 'FaceAlpha', 0.5);
 % プロット初期化
+figure;
+hold on;
+
+mesh = mesh(points_x, points_y, points_z, 'LineStyle', "none", 'FaceColor', 'b', 'FaceAlpha', 0.5);
 
 title('Convex Hull of the points on the plane');
 
+
 quiver3(0, 0, 0, moment_point1(1), moment_point1(2), moment_point1(3), 'r');
-quiver3(0, 0, 0, moment_point2(1), moment_point2(2), moment_point2(3), 'r');
+quiver3(0, 0, 0, moment_point3(1), moment_point3(2), moment_point3(3), 'r');
+
 hold off;
 
 % 軸ラベル
@@ -94,3 +96,25 @@ zlim([-0.03, 0.03]);
 
 % グリッド表示
 grid on;
+
+%title('Random points on the plane');
+
+%quiver3(0, 0, 0, moment_point1(1), moment_point1(2), moment_point1(3), 'r');
+%quiver3(0, 0, 0, moment_point2(1), moment_point2(2), moment_point2(3), 'r');
+
+%% 軸ラベル
+%xlabel('x');
+%ylabel('y');
+%zlabel('z');
+
+%% 表示範囲の設定
+%axis equal;
+%xlim([-1, 1]);
+%ylim([-1, 1]);
+%zlim([-0.03, 0.03]);
+
+%plot3(plane1(:,1), plane1(:,2), plane1(:,3), '.', 'Color', 'b');
+
+%% グリッド表示
+%grid on;
+%hold off;
