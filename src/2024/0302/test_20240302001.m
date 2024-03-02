@@ -36,7 +36,6 @@ for i = 0:0.5:1
 
 end
 
-
 moment_point1 = m1(end, :);
 moment_point2 = m2(end, :);
 moment_point3 = m3(end, :);
